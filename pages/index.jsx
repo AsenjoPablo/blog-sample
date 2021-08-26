@@ -13,14 +13,14 @@ export default function index(props) {
       <h1 className="text-3xl bg-gradient-to-r from-primary-dark to-primary-light bg-clip-text text-transparent px-6 mb-10">
         Bienvenido a nuestro blog
       </h1>
-      <div className="flex flex-col-reverse md:flex-row items-center gap-12 w-full justify-around h-full">
+      <div className="flex flex-col-reverse md:flex-row items-start gap-12 w-full justify-around h-full">
         <div className="flex flex-col gap-12 px-6 md:w-1/2">
           <div className="flex flex-col gap-6">
             <h2 className="text-xl text-primary font-semibold">
               Últimas entradas
             </h2>
             <div className="flex flex-col gap-8">
-              {props.posts.slice(0, 3).map((post, i) => (
+              {props.posts.slice(0, 4).map((post, i) => (
                 <PostPreview key={i} title={post.title} body={post.body} id={post.id} />
               ))}
             </div>
