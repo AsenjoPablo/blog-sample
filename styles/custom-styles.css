@@ -2,6 +2,7 @@ html, body {
     height: 100%;
 }
 
-.blog-title-preview {
-    @apply text-2xl text-primary-light md:font-bold;
+.post-title-preview {
+    @apply text-lg font-bold md:text-2xl text-primary-light;
 }
+

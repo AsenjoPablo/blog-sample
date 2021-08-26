@@ -3,9 +3,9 @@ import React from "react";
 
 function PostPreview({ title, body, id }) {
   return (
-    <div className="blog-head">
+    <div className="flex flex-col gap-1">
       <Link href={"/post/" + id}>
-        <h3 className="capitalize blog-title-preview cursor-pointer hover:text-primary duration-100">{title}</h3>
+        <h3 className="capitalize post-title-preview cursor-pointer hover:opacity-70 duration-100">{title}</h3>
       </Link>
       <span className="italic">20/08/2021</span>
       <p>{body}</p>
