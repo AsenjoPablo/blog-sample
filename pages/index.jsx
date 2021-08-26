@@ -1,8 +1,13 @@
-import React from 'react'
-import Layout from '/components/Layout'
-import Image from 'next/image'
+import React, { useEffect } from "react";
+import Layout from "/components/Layout";
+import Image from "next/image";
+import PostPreview from "../components/post-preview";
 
-export default function index() {
+export default function index(props) {
+  useEffect(() => {
+    console.log("props", props);
+  }, []);
+
   return (
     <Layout>
       <div className="flex flex-col-reverse md:flex-row items-center gap-12 w-full justify-around h-full">
@@ -11,32 +16,37 @@ export default function index() {
             Bienvenido a nuestro blog
           </h1>
           <div className="flex flex-col gap-6">
-            <h2 className="text-xl text-primary font-semibold">Últimas entradas del blog</h2>
+            <h2 className="text-xl text-primary font-semibold">
+              Últimas entradas del blog
+            </h2>
             <div className="flex flex-col gap-4">
-              <div className="blog-head">
-                <h3 className="blog-title-preview">Como regar tus plantas</h3>
-                <span className="italic">20/08/2021</span>
-                <p>Una entrada con informacion acerca de como regar tus maravillosas plantas</p>
-              </div>
-
-              <div className="blog-head">
-                <h3 className="blog-title-preview">Como regar tus plantas</h3>
-                <span className="italic">20/08/2021</span>
-                <p>Una entrada con informacion acerca de como regar tus maravillosas plantas</p>
-              </div>
-
-              <div className="blog-head">
-                <h3 className="blog-title-preview">Como regar tus plantas</h3>
-                <span className="italic">20/08/2021</span>
-                <p>Una entrada con informacion acerca de como regar tus maravillosas plantas</p>
-              </div>
+              {props.posts.slice(0, 3).map((post, i) => (
+                <PostPreview key={i} title={post.title} body={post.body} id={post.id} />
+              ))}
             </div>
           </div>
         </div>
         <div className="bg-cover">
-        <Image  src="/images/flowers.png" width="512" height="512" alt="Some flowers" />
+          <Image
+            src="/images/flowers.png"
+            width="512"
+            height="512"
+            alt="Some flowers"
+          />
         </div>
       </div>
     </Layout>
-  )
+  );
+}
+
+export async function getStaticProps() {
+  const posts = await (
+    await fetch("https://jsonplaceholder.typicode.com/posts")
+  ).json();
+
+  // The value of the `props` key will be
+  //  passed to the `Home` component
+  return {
+    props: { posts },
+  };
 }
