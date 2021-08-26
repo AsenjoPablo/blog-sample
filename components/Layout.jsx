@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
-export default function Layout({children}) {
+export default function Layout({children, center}) {
     return (
         <>
             <Head>
@@ -20,7 +20,7 @@ export default function Layout({children}) {
                     </ul>
                 </nav>
 
-                <div className="container flex flex-col mt-8 flex-1 items-center justify-center">
+                <div className={"container flex flex-col mt-8 flex-1" + (center ? ' items-center justify-center' : '')}>
                     { children }
                 </div>
             </div>
